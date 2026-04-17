@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Vision Board</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="pages/index.html" class="brand">
+      <span class="brand-mark">VB</span>
+      <span class="brand-text">Vision Board</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="vision-board.html">Vision Board</a></li>
+      <li><a href="learning-module.html">Learning</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="auth-btn" class="btn btn-secondary auth-nav-btn">Login</button>
+      <div id="user-menu" class="user-menu hidden">
+        <span id="user-name" class="user-name"></span>
+        <button id="logout-btn" class="btn btn-secondary">Logout</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="toggle-icon">🌙</span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="dashboard">
+    <h2>Welcome Back</h2>
+    <p>Start building your future today.</p>
+
+    <div class="dashboard-cards">
+      <div class="card">
+        <h3>Create Vision Board</h3>
+        <p>Start adding your goals, dreams, and future plans in one inspiring place.</p>
+        <a href="vision-board.html" class="btn">Start</a>
+      </div>
+
+      <div class="card goals-card">
+        <div class="card-top">
+          <h3>My Goals</h3>
+          <span class="goal-badge">3 Active</span>
+        </div>
+
+        <p class="goals-text">Track your current focus and stay consistent with your personal growth journey.</p>
+
+        <div class="goal-list">
+          <div class="goal-item">
+            <span>Finish project design</span>
+            <span class="goal-status done">Done</span>
+          </div>
+
+          <div class="goal-item">
+            <span>Complete dashboard pages</span>
+            <span class="goal-status progress">In Progress</span>
+          </div>
+
+          <div class="goal-item">
+            <span>Add learning resources</span>
+            <span class="goal-status pending">Pending</span>
+          </div>
+        </div>
+
+        <a href="vision-board.html" class="btn">View Goals</a>
+      </div>
+
+      <div class="card">
+        <h3>Learning Module</h3>
+        <p>Improve your mindset, skills, and habits through guided content.</p>
+        <a href="learning-module.html" class="btn">Learn</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/script.js"></script>
+
+  <!-- Auth Modal -->
+  <div class="modal" id="auth-modal">
+    <div class="modal-content auth-modal-content">
+      <div class="modal-header">
+        <h3 id="auth-modal-title">Login</h3>
+        <button id="close-auth-modal" class="close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Login</button>
+        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required />
+        </div>
+
+        <div id="login-error" class="auth-error"></div>
+
+        <button type="submit" class="btn btn-primary full-width">Login</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signup-form" class="auth-form hidden">
+        <div class="form-group">
+          <label for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" required minlength="6" />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-confirm-password">Confirm Password</label>
+          <input type="password" id="signup-confirm-password" required minlength="6" />
+        </div>
+
+        <div id="signup-error" class="auth-error"></div>
+
+        <button type="submit" class="btn btn-primary full-width">Create Account</button>
+      </form>
+
+      <p class="auth-switch-text">
+        <span id="auth-switch-text-span">Don't have an account?</span>
+        <button type="button" id="auth-switch-btn" class="auth-switch-link">Sign Up</button>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

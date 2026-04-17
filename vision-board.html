@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision Board</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="pages/index.html" class="brand">
+      <span class="brand-mark">VB</span>
+      <span class="brand-text">Vision Board</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="vision-board.html" class="active">Vision Board</a></li>
+      <li><a href="learning-module.html">Learning</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="auth-btn" class="btn btn-secondary auth-nav-btn">Login</button>
+      <div id="user-menu" class="user-menu hidden">
+        <span id="user-name" class="user-name"></span>
+        <button id="logout-btn" class="btn btn-secondary">Logout</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="toggle-icon">🌙</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <section class="hero-card">
+      <span class="section-label">Dream. Plan. Achieve.</span>
+      <h1>My Vision Board</h1>
+      <p>
+        Keep your goals, future plans, and motivation in one inspiring place.
+        Build clarity, stay focused, and track what matters most.
+      </p>
+    </section>
+
+    <section class="vision-grid">
+      <div class="vision-card">
+        <h3>Career</h3>
+        <p>Become highly skilled in frontend development and build a polished graduation project.</p>
+      </div>
+
+      <div class="vision-card">
+        <h3>Personal Growth</h3>
+        <p>Stay disciplined, improve consistency, and become more focused every day.</p>
+      </div>
+
+      <div class="vision-card">
+        <h3>Fitness</h3>
+        <p>Build a lean, athletic body and maintain healthy daily habits.</p>
+      </div>
+
+      <div class="vision-card">
+        <h3>Learning</h3>
+        <p>Master HTML, CSS, JavaScript, and create modern user-friendly interfaces.</p>
+      </div>
+    </section>
+
+    <section class="goals-panel">
+      <div class="panel-header">
+        <span class="section-label">Goal Manager</span>
+        <h2>My Goals</h2>
+        <p>Add new goals, remove completed ones, and keep your progress organized.</p>
+      </div>
+
+      <div class="goal-input-card">
+        <h3>Add New Goal</h3>
+        <div class="goal-form">
+          <input type="text" id="goalInput" placeholder="Enter a new goal...">
+          <button class="btn" onclick="addGoal()">Add Goal</button>
+        </div>
+      </div>
+
+      <div class="goal-list-card">
+        <div class="list-top">
+          <h3>Goal List</h3>
+          <span class="goal-count">3 Goals</span>
+        </div>
+
+        <ul id="goalList" class="modern-goal-list">
+          <li class="modern-goal-item">
+            <span>Finish homepage redesign</span>
+            <button class="delete-btn" onclick="removeGoal(this)">Delete</button>
+          </li>
+          <li class="modern-goal-item">
+            <span>Improve dashboard layout</span>
+            <button class="delete-btn" onclick="removeGoal(this)">Delete</button>
+          </li>
+          <li class="modern-goal-item">
+            <span>Add JavaScript interactions</span>
+            <button class="delete-btn" onclick="removeGoal(this)">Delete</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function addGoal() {
+      const input = document.getElementById("goalInput");
+      const goalText = input.value.trim();
+      const goalList = document.getElementById("goalList");
+
+      if (goalText === "") {
+        alert("Please enter a goal!");
+        return;
+      }
+
+      const li = document.createElement("li");
+      li.className = "modern-goal-item";
+      li.innerHTML = `
+        <span>${escapeHtml(goalText)}</span>
+        <button class="delete-btn" onclick="removeGoal(this)">Delete</button>
+      `;
+
+      goalList.appendChild(li);
+      input.value = "";
+      updateGoalCount();
+    }
+
+    function removeGoal(button) {
+      button.parentElement.remove();
+      updateGoalCount();
+    }
+
+    function updateGoalCount() {
+      const count = document.querySelectorAll("#goalList li").length;
+      document.querySelector(".goal-count").textContent = `${count} Goal${count !== 1 ? "s" : ""}`;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    updateGoalCount();
+  </script>
+  <script src="js/script.js"></script>
+
+  <!-- Auth Modal -->
+  <div class="modal" id="auth-modal">
+    <div class="modal-content auth-modal-content">
+      <div class="modal-header">
+        <h3 id="auth-modal-title">Login</h3>
+        <button id="close-auth-modal" class="close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Login</button>
+        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required />
+        </div>
+
+        <div id="login-error" class="auth-error"></div>
+
+        <button type="submit" class="btn btn-primary full-width">Login</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signup-form" class="auth-form hidden">
+        <div class="form-group">
+          <label for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" required minlength="6" />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-confirm-password">Confirm Password</label>
+          <input type="password" id="signup-confirm-password" required minlength="6" />
+        </div>
+
+        <div id="signup-error" class="auth-error"></div>
+
+        <button type="submit" class="btn btn-primary full-width">Create Account</button>
+      </form>
+
+      <p class="auth-switch-text">
+        <span id="auth-switch-text-span">Don't have an account?</span>
+        <button type="button" id="auth-switch-btn" class="auth-switch-link">Sign Up</button>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

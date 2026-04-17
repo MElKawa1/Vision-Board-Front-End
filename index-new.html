@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vision Board - Visual Goal Planning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">VB</span>
+      <span class="brand-text">Vision Board</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="../dashboard.html">Dashboard</a></li>
+      <li><a href="../vision-board.html">Vision Board</a></li>
+      <li><a href="../learning-module.html">Learning</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="auth-btn" class="btn btn-secondary auth-nav-btn">Login</button>
+      <div id="user-menu" class="user-menu hidden">
+        <span id="user-name" class="user-name"></span>
+        <button id="logout-btn" class="btn btn-secondary">Logout</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="toggle-icon">🌙</span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero-card" style="max-width: 900px; margin: 60px auto; text-align: center;">
+      <span class="section-label">Welcome to Vision Board</span>
+      <h1>Build Your Future Visually</h1>
+      <p style="font-size: 18px; margin-top: 16px;">
+        Create a life you actually want to live by organizing your goals, dreams, and motivation in one clean and modern vision board.
+      </p>
+      
+      <div style="margin-top: 40px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="../dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+        <a href="../vision-board.html" class="btn btn-secondary">Explore Vision Board</a>
+      </div>
+    </section>
+
+    <section style="max-width: 1180px; margin: 80px auto; padding: 0 40px;">
+      <h2 style="font-size: 32px; text-align: center; margin-bottom: 50px; color: var(--text);">Features</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <div class="vision-card">
+          <h3 style="font-size: 24px; margin-bottom: 12px;">📋 Organize Goals</h3>
+          <p>Categorize your goals by career, fitness, travel, education, and more to stay focused.</p>
+        </div>
+
+        <div class="vision-card">
+          <h3 style="font-size: 24px; margin-bottom: 12px;">🎯 Visual Planning</h3>
+          <p>Create a visual representation of your dreams with images and descriptions.</p>
+        </div>
+
+        <div class="vision-card">
+          <h3 style="font-size: 24px; margin-bottom: 12px;">📊 Track Progress</h3>
+          <p>Monitor your goals, mark milestones, and celebrate your achievements.</p>
+        </div>
+
+        <div class="vision-card">
+          <h3 style="font-size: 24px; margin-bottom: 12px;">🌙 Dark Mode</h3>
+          <p>Enjoy a comfortable viewing experience with automatic dark mode support.</p>
+        </div>
+
+        <div class="vision-card">
+          <h3 style="font-size: 24px; margin-bottom: 12px;">💾 Cloud Storage</h3>
+          <p>Your goals are saved locally so you never lose your progress.</p>
+        </div>
+
+        <div class="vision-card">
+          <h3 style="font-size: 24px; margin-bottom: 12px;">📱 Responsive Design</h3>
+          <p>Access your vision board on any device, anywhere, anytime.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-section" style="max-width: 900px; margin: 100px auto; padding: 60px 40px; text-align: center;">
+      <blockquote style="font-size: 24px; font-weight: 600; color: var(--text); margin: 0;">
+        "Discipline is choosing between what you want now and what you want most."
+      </blockquote>
+    </section>
+  </main>
+
+  <footer style="background: var(--white); border-top: 1px solid var(--border); padding: 40px 20px; text-align: center; color: var(--muted);">
+    <p style="margin-bottom: 8px;">VisionBoard Project © 2026</p>
+    <p>Designed for your software project module</p>
+  </footer>
+
+  <script src="../js/script.js"></script>
+
+  <!-- Auth Modal -->
+  <div class="modal" id="auth-modal">
+    <div class="modal-content auth-modal-content">
+      <div class="modal-header">
+        <h3 id="auth-modal-title">Login</h3>
+        <button id="close-auth-modal" class="close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Login</button>
+        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required />
+        </div>
+
+        <div id="login-error" class="auth-error"></div>
+
+        <button type="submit" class="btn btn-primary full-width">Login</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signup-form" class="auth-form hidden">
+        <div class="form-group">
+          <label for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" required minlength="6" />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-confirm-password">Confirm Password</label>
+          <input type="password" id="signup-confirm-password" required minlength="6" />
+        </div>
+
+        <div id="signup-error" class="auth-error"></div>
+
+        <button type="submit" class="btn btn-primary full-width">Create Account</button>
+      </form>
+
+      <p class="auth-switch-text">
+        <span id="auth-switch-text-span">Don't have an account?</span>
+        <button type="button" id="auth-switch-btn" class="auth-switch-link">Sign Up</button>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

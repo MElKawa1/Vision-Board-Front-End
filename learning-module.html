@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Module - Vision Board</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="pages/index.html" class="brand">
+      <span class="brand-mark">VB</span>
+      <span class="brand-text">Vision Board</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="vision-board.html">Vision Board</a></li>
+      <li><a href="learning-module.html" class="active">Learning</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="auth-btn" class="btn btn-secondary auth-nav-btn">Login</button>
+      <div id="user-menu" class="user-menu hidden">
+        <span id="user-name" class="user-name"></span>
+        <button id="logout-btn" class="btn btn-secondary">Logout</button>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="toggle-icon">🌙</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <section class="hero-card">
+      <span class="section-label">Grow. Learn. Succeed.</span>
+      <h1>Learning Module</h1>
+      <p>
+        Enhance your skills, improve your mindset, and develop habits that lead to success.
+        Learn from curated resources and transform your vision into reality.
+      </p>
+    </section>
+
+    <section class="vision-grid">
+      <div class="vision-card">
+        <h3>📚 Self-Discipline</h3>
+        <p>Master the art of discipline and build consistency in everything you do. Transform your goals into daily habits.</p>
+      </div>
+
+      <div class="vision-card">
+        <h3>🧠 Mental Health</h3>
+        <p>Develop a healthy mindset, manage stress, and cultivate positive thinking patterns for better well-being.</p>
+      </div>
+
+      <div class="vision-card">
+        <h3>💼 Professional Growth</h3>
+        <p>Level up your career with in-demand skills, networking opportunities, and industry best practices.</p>
+      </div>
+
+      <div class="vision-card">
+        <h3>⚡ Productivity Tips</h3>
+        <p>Learn time management, prioritization, and productivity hacks to maximize your efficiency and output.</p>
+      </div>
+    </section>
+
+    <section class="goals-panel">
+      <div class="panel-header">
+        <span class="section-label">Learning Resources</span>
+        <h2>Recommended Courses & Materials</h2>
+        <p>Access curated resources to help you grow and achieve your vision board goals.</p>
+      </div>
+
+      <div class="goal-list-card">
+        <h3>Available Topics</h3>
+        <ul class="modern-goal-list">
+          <li class="modern-goal-item">
+            <span><strong>Web Development Fundamentals</strong> - Master HTML, CSS, and JavaScript basics</span>
+            <span style="color: var(--muted); font-size: 12px;">★★★★★</span>
+          </li>
+          <li class="modern-goal-item">
+            <span><strong>Goal Setting Masterclass</strong> - Set SMART goals and achieve them systematically</span>
+            <span style="color: var(--muted); font-size: 12px;">★★★★★</span>
+          </li>
+          <li class="modern-goal-item">
+            <span><strong>Habit Building Guide</strong> - Create lasting habits and build discipline</span>
+            <span style="color: var(--muted); font-size: 12px;">★★★★☆</span>
+          </li>
+          <li class="modern-goal-item">
+            <span><strong>Personal Finance 101</strong> - Manage money wisely and build wealth</span>
+            <span style="color: var(--muted); font-size: 12px;">★★★★☆</span>
+          </li>
+          <li class="modern-goal-item">
+            <span><strong>Fitness & Health Transformation</strong> - Build a stronger, healthier you</span>
+            <span style="color: var(--muted); font-size: 12px;">★★★★★</span>
+          </li>
+          <li class="modern-goal-item">
+            <span><strong>Leadership and Communication</strong> - Become an effective leader and communicator</span>
+            <span style="color: var(--muted); font-size: 12px;">★★★★☆</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="goal-input-card" style="margin-top: 30px;">
+        <h3>Track Your Learning Progress</h3>
+        <p style="color: var(--muted); margin-bottom: 16px; font-size: 14px;">Mark courses as completed to track your learning journey.</p>
+        <div class="goal-form">
+          <input type="text" id="courseInput" placeholder="Enter a course you've completed...">
+          <button class="btn" onclick="addCompletedCourse()">Mark Complete</button>
+        </div>
+      </div>
+
+      <div class="goal-list-card" style="margin-top: 30px;">
+        <div class="list-top">
+          <h3>Completed Courses</h3>
+          <span class="goal-count">0 Completed</span>
+        </div>
+
+        <ul id="courseList" class="modern-goal-list">
+          <li class="modern-goal-item">
+            <span>Python Basics</span>
+            <button class="delete-btn" onclick="removeCourse(this)">Remove</button>
+          </li>
+          <li class="modern-goal-item">
+            <span>Introduction to Web Design</span>
+            <button class="delete-btn" onclick="removeCourse(this)">Remove</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="goals-panel" style="margin-top: 40px;">
+      <div class="panel-header">
+        <span class="section-label">Tips for Success</span>
+        <h2>12 Ways to Accelerate Your Growth</h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 24px;">
+        <div style="padding: 20px; background: rgba(245, 247, 251, 0.6); border-radius: 16px; border: 1px solid var(--border);">
+          <h4 style="margin-bottom: 10px;">1. Set Clear Goals</h4>
+          <p style="font-size: 14px; color: var(--muted);">Define specific, measurable, and achievable goals for every area of your life.</p>
+        </div>
+
+        <div style="padding: 20px; background: rgba(245, 247, 251, 0.6); border-radius: 16px; border: 1px solid var(--border);">
+          <h4 style="margin-bottom: 10px;">2. Create Daily Habits</h4>
+          <p style="font-size: 14px; color: var(--muted);">Small daily actions compound into massive results over time. Build consistency.</p>
+        </div>
+
+        <div style="padding: 20px; background: rgba(245, 247, 251, 0.6); border-radius: 16px; border: 1px solid var(--border);">
+          <h4 style="margin-bottom: 10px;">3. Learn Continuously</h4>
+          <p style="font-size: 14px; color: var(--muted);">Invest in books, courses, and mentors. Knowledge is your greatest asset.</p>
+        </div>
+
+        <div style="padding: 20px; background: rgba(245, 247, 251, 0.6); border-radius: 16px; border: 1px solid var(--border);">
+          <h4 style="margin-bottom: 10px;">4. Find an Accountability Partner</h4>
+          <p style="font-size: 14px; color: var(--muted);">Share your goals with someone who will keep you accountable and motivated.</p>
+        </div>
+
+        <div style="padding: 20px; background: rgba(245, 247, 251, 0.6); border-radius: 16px; border: 1px solid var(--border);">
+          <h4 style="margin-bottom: 10px;">5. Visualize Success</h4>
+          <p style="font-size: 14px; color: var(--muted);">Spend time visualizing yourself achieving your goals. Your vision board is perfect for this.</p>
+        </div>
+
+        <div style="padding: 20px; background: rgba(245, 247, 251, 0.6); border-radius: 16px; border: 1px solid var(--border);">
+          <h4 style="margin-bottom: 10px;">6. Take Action Daily</h4>
+          <p style="font-size: 14px; color: var(--muted);">Progress comes from action. Do something every day towards your goals, no matter how small.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function addCompletedCourse() {
+      const input = document.getElementById("courseInput");
+      const courseText = input.value.trim();
+      const courseList = document.getElementById("courseList");
+
+      if (courseText === "") {
+        alert("Please enter a course name!");
+        return;
+      }
+
+      const li = document.createElement("li");
+      li.className = "modern-goal-item";
+      li.innerHTML = `
+        <span>${escapeHtml(courseText)}</span>
+        <button class="delete-btn" onclick="removeCourse(this)">Remove</button>
+      `;
+
+      courseList.appendChild(li);
+      input.value = "";
+      updateCourseCount();
+    }
+
+    function removeCourse(button) {
+      button.parentElement.remove();
+      updateCourseCount();
+    }
+
+    function updateCourseCount() {
+      const count = document.querySelectorAll("#courseList li").length;
+      document.querySelector(".goal-count").textContent = `${count} Completed`;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    updateCourseCount();
+  </script>
+
+  <script src="js/script.js"></script>
+
+  <!-- Auth Modal -->
+  <div class="modal" id="auth-modal">
+    <div class="modal-content auth-modal-content">
+      <div class="modal-header">
+        <h3 id="auth-modal-title">Login</h3>
+        <button id="close-auth-modal" class="close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Login</button>
+        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required />
+        </div>
+
+        <div id="login-error" class="auth-error"></div>
+
+        <button type="submit" class="btn btn-primary full-width">Login</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signup-form" class="auth-form hidden">
+        <div class="form-group">
+          <label for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" required minlength="6" />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-confirm-password">Confirm Password</label>
+          <input type="password" id="signup-confirm-password" required minlength="6" />
+        </div>
+
+        <div id="signup-error" class="auth-error"></div>
+
+        <button type="submit" class="btn btn-primary full-width">Create Account</button>
+      </form>
+
+      <p class="auth-switch-text">
+        <span id="auth-switch-text-span">Don't have an account?</span>
+        <button type="button" id="auth-switch-btn" class="auth-switch-link">Sign Up</button>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
