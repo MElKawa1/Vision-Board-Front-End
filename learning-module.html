@@ -10,7 +10,7 @@
 <body>
 
   <nav class="navbar">
-    <a href="pages/index.html" class="brand">
+    <a href="dashboard.html" class="brand">
       <span class="brand-mark">VB</span>
       <span class="brand-text">Vision Board</span>
     </a>
@@ -171,41 +171,37 @@
 
   <script>
     function addCompletedCourse() {
-      const input = document.getElementById("courseInput");
-      const courseText = input.value.trim();
-      const courseList = document.getElementById("courseList");
+      var input = document.getElementById("courseInput");
+      var courseText = input.value;
+      var courseList = document.getElementById("courseList");
 
-      if (courseText === "") {
+      if (courseText.trim() === "") {
         alert("Please enter a course name!");
         return;
       }
 
-      const li = document.createElement("li");
+      var li = document.createElement("li");
       li.className = "modern-goal-item";
-      li.innerHTML = `
-        <span>${escapeHtml(courseText)}</span>
-        <button class="delete-btn" onclick="removeCourse(this)">Remove</button>
-      `;
+      var span = document.createElement("span");
+      span.textContent = courseText.trim();
+      var btn = document.createElement("button");
+      btn.className = "delete-btn";
+      btn.textContent = "Remove";
+      btn.onclick = function() {
+        this.parentElement.remove();
+        updateCourseCount();
+      };
 
+      li.appendChild(span);
+      li.appendChild(btn);
       courseList.appendChild(li);
       input.value = "";
       updateCourseCount();
     }
 
-    function removeCourse(button) {
-      button.parentElement.remove();
-      updateCourseCount();
-    }
-
     function updateCourseCount() {
-      const count = document.querySelectorAll("#courseList li").length;
-      document.querySelector(".goal-count").textContent = `${count} Completed`;
-    }
-
-    function escapeHtml(text) {
-      const div = document.createElement("div");
-      div.textContent = text;
-      return div.innerHTML;
+      var count = document.getElementById("courseList").getElementsByTagName("li").length;
+      document.querySelector(".goal-count").textContent = count + " Completed";
     }
 
     updateCourseCount();

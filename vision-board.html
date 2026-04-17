@@ -10,7 +10,7 @@
 <body>
 
   <nav class="navbar">
-    <a href="pages/index.html" class="brand">
+    <a href="dashboard.html" class="brand">
       <span class="brand-mark">VB</span>
       <span class="brand-text">Vision Board</span>
     </a>
@@ -105,44 +105,51 @@
 
   <script>
     function addGoal() {
-      const input = document.getElementById("goalInput");
-      const goalText = input.value.trim();
-      const goalList = document.getElementById("goalList");
+      var input = document.getElementById("goalInput");
+      var goalText = input.value.trim();
+      var goalList = document.getElementById("goalList");
 
       if (goalText === "") {
         alert("Please enter a goal!");
         return;
       }
 
-      const li = document.createElement("li");
+      var li = document.createElement("li");
       li.className = "modern-goal-item";
-      li.innerHTML = `
-        <span>${escapeHtml(goalText)}</span>
-        <button class="delete-btn" onclick="removeGoal(this)">Delete</button>
-      `;
+      var span = document.createElement("span");
+      span.textContent = goalText;
+      var btn = document.createElement("button");
+      btn.className = "delete-btn";
+      btn.textContent = "Delete";
+      btn.onclick = function() {
+        this.parentElement.remove();
+        updateGoalCount();
+      };
 
+      li.appendChild(span);
+      li.appendChild(btn);
       goalList.appendChild(li);
       input.value = "";
       updateGoalCount();
     }
 
-    function removeGoal(button) {
-      button.parentElement.remove();
-      updateGoalCount();
-    }
-
     function updateGoalCount() {
-      const count = document.querySelectorAll("#goalList li").length;
-      document.querySelector(".goal-count").textContent = `${count} Goal${count !== 1 ? "s" : ""}`;
-    }
-
-    function escapeHtml(text) {
-      const div = document.createElement("div");
-      div.textContent = text;
-      return div.innerHTML;
+      var count = 0;
+      var lis = document.getElementById("goalList").getElementsByTagName("li");
+      count = lis.length;
+      var countText = count + " Goal";
+      if (count !== 1) {
+        countText = count + " Goals";
+      }
+      document.querySelector(".goal-count").textContent = countText;
     }
 
     updateGoalCount();
+
+    function removeGoal(btn) {
+      btn.parentElement.remove();
+      updateGoalCount();
+    }
   </script>
   <script src="js/script.js"></script>
 
